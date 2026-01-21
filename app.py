@@ -14,7 +14,7 @@ import zipfile
 # ==========================
 MODEL_DIR = "cnn_music_instruments"    # folder after unzip
 MODEL_ZIP = "cnn_music_instruments.zip"
-FILE_ID = "1yLnkoRoIT2CdqWxW4vxZ396xn8FeQo2-"  # <-- Your Google Drive file ID
+FILE_ID = "1yLnkoRoIT2CdqWxW4vxZ396xn8FeQo2"  # <-- Your Google Drive file ID
 LABEL_MAP_PATH = "label_map.json"
 
 SAMPLE_RATE = 22050
