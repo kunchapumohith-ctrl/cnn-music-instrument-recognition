@@ -6,7 +6,6 @@ import json
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
 from fpdf import FPDF
-import gdown
 import zipfile
 
 # ==========================
@@ -14,7 +13,6 @@ import zipfile
 # ==========================
 MODEL_DIR = "cnn_music_instruments"    # folder after unzip
 MODEL_ZIP = "cnn_music_instruments.zip"
-FILE_ID = "1yLnkoRoIT2CdqWxW4vxZ396xn8FeQo2"  # <-- Your Google Drive file ID
 LABEL_MAP_PATH = "label_map.json"
 
 SAMPLE_RATE = 22050
@@ -24,15 +22,15 @@ MAX_FRAMES = 87
 TOP_K = 3   # show top 3 instruments
 
 # ==========================
-# DOWNLOAD & LOAD MODEL
+# UNZIP MODEL IF NEEDED
 # ==========================
-if not os.path.exists(MODEL_ZIP):
-    gdown.download(f"https://drive.google.com/uc?id={FILE_ID}", MODEL_ZIP, quiet=False)
-
 if not os.path.exists(MODEL_DIR):
     with zipfile.ZipFile(MODEL_ZIP, 'r') as zip_ref:
         zip_ref.extractall(MODEL_DIR)
 
+# ==========================
+# LOAD MODEL
+# ==========================
 @st.cache_resource
 def load_cnn_model():
     return load_model(MODEL_DIR)
