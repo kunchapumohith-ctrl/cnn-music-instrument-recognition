@@ -11,8 +11,8 @@ import zipfile
 # ==========================
 # CONFIG
 # ==========================
-MODEL_DIR = "cnn_music_instruments"    # folder after unzip
-MODEL_ZIP = "cnn_music_instruments.zip"
+MODEL_ZIP = "cnn_music_instruments.zip"   # zip containing the .keras model
+MODEL_FILE = "cnn_music_instruments.keras"  # the .keras model inside zip
 LABEL_MAP_PATH = "label_map.json"
 
 SAMPLE_RATE = 22050
@@ -24,16 +24,16 @@ TOP_K = 3   # show top 3 instruments
 # ==========================
 # UNZIP MODEL IF NEEDED
 # ==========================
-if not os.path.exists(MODEL_DIR):
+if not os.path.exists(MODEL_FILE):
     with zipfile.ZipFile(MODEL_ZIP, 'r') as zip_ref:
-        zip_ref.extractall(MODEL_DIR)
+        zip_ref.extractall(".")
 
 # ==========================
 # LOAD MODEL
 # ==========================
 @st.cache_resource
 def load_cnn_model():
-    return load_model(MODEL_DIR)
+    return load_model(MODEL_FILE)
 
 model = load_cnn_model()
 
