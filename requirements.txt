@@ -1,8 +1,6 @@
-streamlit
-tensorflow
-librosa
+streamlit==1.30.0
 numpy
+librosa
 matplotlib
+tensorflow==2.15.0
 fpdf
-soundfile
-scikit-learn
