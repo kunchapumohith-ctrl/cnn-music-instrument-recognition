@@ -22,11 +22,11 @@ TOP_K = 3
 # LOAD MODEL (SAFE)
 # ==========================
 @st.cache_resource(show_spinner="Loading CNN model...")
+@st.cache_resource
 def load_cnn_model():
-    return load_model(MODEL_PATH, compile=False)
+    return load_model("cnn_music_instruments.keras", compile=False)
 
 model = load_cnn_model()
-
 # ==========================
 # LOAD LABEL MAP
 # ==========================

@@ -2,5 +2,7 @@ streamlit
 tensorflow==2.15.0
 librosa
 numpy
+matplotlib
 fpdf
 soundfile
+scikit-learn

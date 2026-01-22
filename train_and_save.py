@@ -2,6 +2,7 @@ import os
 import json
 import numpy as np
 import librosa
+
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import (
@@ -14,13 +15,16 @@ from tensorflow.keras.optimizers import Adam
 # CONFIG
 # ==========================
 DATASET_PATH = r"C:\Users\manoj\Desktop\CNN-Based-Music-Instrument-Recognition-System\datasets"
+
 SAMPLE_RATE = 22050
 DURATION = 2.5
 N_MELS = 64
 MAX_FRAMES = 87
+EPOCHS = 30
+BATCH_SIZE = 16
 
 # ==========================
-# LABEL MAP
+# LOAD DATA
 # ==========================
 instruments = sorted([
     d for d in os.listdir(DATASET_PATH)
@@ -32,11 +36,8 @@ num_classes = len(instruments)
 
 X, y = [], []
 
-print("Loading dataset...")
+print("🔄 Loading dataset...")
 
-# ==========================
-# LOAD DATA
-# ==========================
 for inst in instruments:
     folder = os.path.join(DATASET_PATH, inst)
 
@@ -46,6 +47,9 @@ for inst in instruments:
 
         path = os.path.join(folder, file)
         audio, sr = librosa.load(path, sr=SAMPLE_RATE, duration=DURATION)
+
+        if len(audio) < int(DURATION * sr):
+            audio = np.pad(audio, (0, int(DURATION * sr) - len(audio)))
 
         mel = librosa.feature.melspectrogram(
             y=audio, sr=sr, n_mels=N_MELS
@@ -62,14 +66,14 @@ for inst in instruments:
         mel_db = mel_db[..., np.newaxis]
         X.append(mel_db)
 
-        label_vector = np.zeros(num_classes)
-        label_vector[label_map[inst]] = 1
-        y.append(label_vector)
+        label = np.zeros(num_classes)
+        label[label_map[inst]] = 1
+        y.append(label)
 
 X = np.array(X)
 y = np.array(y)
 
-print("Dataset shape:", X.shape, y.shape)
+print("✅ Dataset loaded:", X.shape, y.shape)
 
 # Save label map
 with open("label_map.json", "w") as f:
@@ -83,7 +87,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # ==========================
-# CNN MODEL
+# MODEL
 # ==========================
 model = Sequential([
     Conv2D(32, (3, 3), activation="relu", padding="same",
@@ -122,13 +126,13 @@ model.summary()
 # ==========================
 model.fit(
     X_train, y_train,
-    epochs=30,
-    batch_size=16,
+    epochs=EPOCHS,
+    batch_size=BATCH_SIZE,
     validation_split=0.2
 )
 
 # ==========================
-# SAVE MODEL (IMPORTANT)
+# SAVE (CRITICAL FIX)
 # ==========================
-model.save("cnn_music_instruments.h5")
-print("✅ Model saved as cnn_music_instruments.h5")
+model.save("cnn_music_instruments.keras")
+print("✅ Model trained and saved correctly")
