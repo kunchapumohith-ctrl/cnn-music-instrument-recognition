@@ -1,8 +1,6 @@
 streamlit
-tensorflow==2.13.1
-numpy
+tensorflow==2.15.0
 librosa
-scikit-learn
-matplotlib
+numpy
 fpdf
-gdown
+soundfile
