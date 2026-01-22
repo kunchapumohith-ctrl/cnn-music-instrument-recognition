@@ -1,6 +1,6 @@
-streamlit==1.30.0
-numpy
-librosa
-matplotlib
-tensorflow==2.15.0
-fpdf
+streamlit==1.26.1
+tensorflow-cpu==2.20.0
+numpy==1.25.0
+librosa==0.10.1
+matplotlib==3.8.0
+fpdf==1.7.2
