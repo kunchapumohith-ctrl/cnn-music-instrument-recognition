@@ -134,5 +134,7 @@ model.fit(
 # ==========================
 # SAVE (CRITICAL FIX)
 # ==========================
-model.save("cnn_music_instruments.keras")
-print("✅ Model trained and saved correctly")
+# Save the trained model in HDF5 format
+model.save("cnn_music_instruments.h5")
+print("✅ Model saved as cnn_music_instruments.h5")
+
