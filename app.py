@@ -12,7 +12,7 @@ import zipfile
 # CONFIG
 # ==========================
 MODEL_ZIP = "cnn_music_instruments.zip"   # zip containing the .h5 model
-MODEL_FILE = "cnn_music_instruments.h5"   # the .h5 model inside zip
+MODEL_FILE = "cnn_music_instruments.keras"   # the .h5 model inside zip
 LABEL_MAP_PATH = "label_map.json"
 
 SAMPLE_RATE = 22050
