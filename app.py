@@ -1,4 +1,12 @@
+# ==========================
+# STREAMLIT PAGE CONFIG
+# ==========================
 import streamlit as st
+st.set_page_config(page_title="Music Instrument Recognition", layout="wide")
+
+# ==========================
+# IMPORTS
+# ==========================
 import numpy as np
 import librosa
 import os
@@ -92,7 +100,6 @@ def generate_pdf_report(predictions, audio_name):
 # ==========================
 # STREAMLIT UI
 # ==========================
-st.set_page_config(page_title="Music Instrument Recognition", layout="wide")
 st.title("🎵 CNN-Based Music Instrument Recognition System")
 
 uploaded_file = st.file_uploader("Upload WAV audio file", type=["wav"])
