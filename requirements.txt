@@ -4,6 +4,9 @@ streamlit==1.26.1
 # TensorFlow CPU for Python 3.13
 tensorflow-cpu==2.20.0
 
+# NumPy (required by TensorFlow 2.20)
+numpy>=1.26.0
+
 # Audio & plotting
 librosa==0.10.1
 matplotlib==3.8.0
