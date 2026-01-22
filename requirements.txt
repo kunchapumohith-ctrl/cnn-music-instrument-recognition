@@ -1,15 +1,6 @@
-# Streamlit
 streamlit==1.26.1
-
-# TensorFlow CPU (compatible with Streamlit 1.26.1)
-tensorflow-cpu==2.13.0
-
-# Audio processing & plotting
-librosa==0.10.1
-matplotlib==3.8.0
-
-# PDF report generation
-fpdf==1.7.2
-
-# Build tools
-setuptools>=68.0.0
+tensorflow==2.20.0
+numpy
+librosa
+matplotlib
+fpdf
